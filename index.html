@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deep Link Test</title>
+</head>
+<body>
+  <h1>Android Deep Link Test Page</h1>
+  <p>下面的链接可以用来测试 Android 的 Deeplink / App Link / Intent。</p>
+
+  <!-- 普通 Deep Link -->
+  <p>
+    <a href="myapp://open/details?id=123">Deep Link: myapp://open/details?id=123</a>
+  </p>
+
+  <!-- App Link (https) -->
+  <p>
+    <a href="https://yourdomain.com/vconsulting/detail?id=123">App Link: https://yourdomain.com/vconsulting/detail?id=123</a>
+  </p>
+
+  <!-- Intent 链接 -->
+  <p>
+    <a href="intent://open/details?id=123#Intent;scheme=myapp;package=com.mycompany.myapp;end">
+      Intent: 打开 com.mycompany.myapp
+    </a>
+  </p>
+
+</body>
+</html>
