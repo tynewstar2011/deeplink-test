@@ -2,8 +2,8 @@
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "com.example.fast",
+    "package_name": "com.md360.md360",
     "sha256_cert_fingerprints":
-    ["98:21:A5:AE:A3:A9:6E:90:CA:23:12:3E:17:17:B2:C4:32:A0:B4:10:49:21:63:21:54:ED:67:C5:C0:BA:D6:E7"]
+    ["5F:05:E9:0C:43:62:F6:FC:5A:A9:77:9E:C8:AB:D4:5C:6E:7B:A8:32:F1:01:7A:03:4D:0A:EC:E2:FD:5B:BC:6D"]
   }
 }]
