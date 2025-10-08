@@ -58,11 +58,9 @@
   <footer>如果未安装，将自动跳转到应用商店</footer>
 
   <script>
-    const androidScheme = "com.md360.md360://open/dev/v-consult/4304?pwd=b47e47e3b94044c5952b1fb1c8851dbb";
-    const androidStore = "https://play.google.com/store/apps/details?id=com.doctorconsulting";
-
-    const iosScheme = "md360://open/dev/v-consult/4304?pwd=b47e47e3b94044c5952b1fb1c8851dbb";
-    const iosStore = "https://apps.apple.com/app/id123456789"; // ← 替换为你的 iOS App Store 链接
+    const androidStore = "https://play.google.com/store/apps/details?id=com.md360.md360";
+    const schemeUrl = "com.md360.md360://open/dev/v-consult/4304?pwd=b47e47e3b94044c5952b1fb1c8851dbb";
+    const iosStore = "https://apps.apple.com/app/id123456789"; //
 
     const userAgent = navigator.userAgent.toLowerCase();
     const isAndroid = userAgent.indexOf("android") > -1;
@@ -73,13 +71,10 @@
       let storeUrl = "";
 
       if (isAndroid) {
-        schemeUrl = androidScheme;
         storeUrl = androidStore;
       } else if (isIOS) {
-        schemeUrl = iosScheme;
         storeUrl = iosStore;
       } else {
-        alert("请使用手机浏览器打开此页面。");
         return;
       }
 
