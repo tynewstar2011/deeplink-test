@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>打开我的 App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>打开 App</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #2196f3, #00bcd4);
       height: 100vh;
-      background: linear-gradient(135deg, #00bcd4, #2196f3);
+      margin: 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      color: #fff;
-      text-align: center;
+      align-items: center;
+      color: white;
     }
-
-    h1 {
-      font-size: 22px;
-      margin-bottom: 24px;
-    }
-
     button {
-      background: #fff;
+      background: white;
       color: #2196f3;
       border: none;
       border-radius: 12px;
@@ -33,63 +25,54 @@
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
       transition: all 0.25s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-
     button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-    }
-
-    footer {
-      position: absolute;
-      bottom: 20px;
-      font-size: 13px;
-      opacity: 0.8;
     }
   </style>
 </head>
 <body>
-
-  <h1>点击下方按钮打开我的 App</h1>
-  <button id="openAppBtn">立即打开</button>
-
-  <footer>如果未安装，将自动跳转到应用商店</footer>
+  <h1>点击打开 App</h1>
+  <button id="openApp">立即打开</button>
 
   <script>
+    const androidScheme = "com.md360.md360://open/dev/v-consult/4304?pwd=b47e47e3b94044c5952b1fb1c8851dbb";
+    const iosScheme = "com.md360.md360://open/dev/v-consult/4304?pwd=b47e47e3b94044c5952b1fb1c8851dbb";
+
     const androidStore = "https://play.google.com/store/apps/details?id=com.md360.md360";
-    const schemeUrl = "com.md360.md360://open/dev/v-consult/4304?pwd=b47e47e3b94044c5952b1fb1c8851dbb";
-    const iosStore = "https://apps.apple.com/app/id123456789"; //
+    const iosStore = "https://apps.apple.com/app/id6737562564"; // ← 改成你的 App Store 链接
 
     const userAgent = navigator.userAgent.toLowerCase();
     const isAndroid = userAgent.indexOf("android") > -1;
     const isIOS = /iphone|ipad|ipod/.test(userAgent);
 
-    function openApp() {
+    document.getElementById("openApp").addEventListener("click", () => {
       let schemeUrl = "";
       let storeUrl = "";
 
       if (isAndroid) {
+        schemeUrl = androidScheme;
         storeUrl = androidStore;
       } else if (isIOS) {
+        schemeUrl = iosScheme;
         storeUrl = iosStore;
       } else {
+        alert("请使用手机浏览器打开此页面");
         return;
       }
 
-      const now = Date.now();
+      const start = Date.now();
       window.location.href = schemeUrl;
 
-      // 1.5 秒内未打开，说明未安装，跳转到商店
+      // 如果在 1.5 秒内没有打开 App，则跳转到商店
       setTimeout(() => {
-        if (Date.now() - now < 1800) {
+        if (Date.now() - start < 1500) {
           window.location.href = storeUrl;
         }
-      }, 1500);
-    }
-
-    document.getElementById("openAppBtn").addEventListener("click", openApp);
+      }, 1200);
+    });
   </script>
 </body>
 </html>
