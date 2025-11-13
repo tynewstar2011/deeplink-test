@@ -36,13 +36,17 @@
 <body>
   <h1>点击打开 App</h1>
   <button id="openApp">立即打开</button>
+  <button id="openAppPatient">立即打开Patient</button>
 
   <script>
     const androidScheme = "com.md360.md360://open/dev/v-consult/4304?pwd=b47e47e3b94044c5952b1fb1c8851dbb";
+    const androidSchemePatient = "com.md360.patient://open/dev/v-consult/4304?pwd=b47e47e3b94044c5952b1fb1c8851dbb";
     const iosScheme = "com.md360.md360://open/dev/v-consult/4304?pwd=b47e47e3b94044c5952b1fb1c8851dbb";
-
+    const iosSchemePatient = "com.md360.md360://open/dev/v-consult/4304?pwd=b47e47e3b94044c5952b1fb1c8851dbb";
+    const androidStorePatient = "https://play.google.com/store/apps/details?id=com.md360.patient"
     const androidStore = "https://play.google.com/store/apps/details?id=com.md360.md360";
-    const iosStore = "https://apps.apple.com/app/id6737562564"; // ← 改成你的 App Store 链接
+    const iosStore = "https://apps.apple.com/app/id6737562564"; 
+    const iosStorePatient = "https://apps.apple.com/app/id6755181832"; 
 
     const userAgent = navigator.userAgent.toLowerCase();
     const isAndroid = userAgent.indexOf("android") > -1;
@@ -58,6 +62,33 @@
       } else if (isIOS) {
         schemeUrl = iosScheme;
         storeUrl = iosStore;
+      } else {
+        alert("请使用手机浏览器打开此页面");
+        return;
+      }
+
+      const start = Date.now();
+      window.location.href = schemeUrl;
+
+      // 如果在 1.5 秒内没有打开 App，则跳转到商店
+      setTimeout(() => {
+        if (Date.now() - start < 1500) {
+          window.location.href = storeUrl;
+        }
+      }, 1200);
+    });
+
+
+    document.getElementById("openAppPatient").addEventListener("click", () => {
+      let schemeUrl = "";
+      let storeUrl = "";
+
+      if (isAndroid) {
+        schemeUrl = androidSchemePatient;
+        storeUrl = androidStorePatient;
+      } else if (isIOS) {
+        schemeUrl = iosSchemePatient;
+        storeUrl = iosStorePatient;
       } else {
         alert("请使用手机浏览器打开此页面");
         return;
